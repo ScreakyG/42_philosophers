@@ -6,13 +6,13 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 11:57:31 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/07/20 20:37:32 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/07/22 12:17:07 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philosophers.h"
 
-int ft_think(t_philo *philo)
+int ft_think(t_philo *philo, int print)
 {
     time_t think_time;
     
@@ -24,7 +24,8 @@ int ft_think(t_philo *philo)
     if (get_philo_state(philo) == DEAD)
         return (0);
     set_philo_state(philo, THINKING);
-    print_message(philo, THINK);
+    if (print == 1)
+        print_message(philo, THINK);
     ft_usleep(think_time, philo);
     return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 19:06:45 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/07/20 20:37:12 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/07/21 19:21:43 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int init_philos(t_data *data)
         pthread_mutex_init(&data->philo_struct[i].meal_time_mut, NULL);
         pthread_mutex_init(&data->philo_struct[i].state_mut, NULL);
         pthread_mutex_init(&data->philo_struct[i].sleep_eat_mut, NULL);
+        pthread_mutex_init(&data->philo_struct[i].meals_eaten_mut, NULL);
         update_last_eat(&data->philo_struct[i]);
     }
     return (1);

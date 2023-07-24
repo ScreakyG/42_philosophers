@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 16:56:44 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/07/20 20:36:39 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/07/21 19:29:03 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int    eat(t_philo *philo)
     print_message(philo, EAT);
     update_last_eat(philo);
     sleep_eat_time(philo);
-    //update_meal_eaten(philo);
+    update_meal_eaten(philo);
     drop_left_fork(philo);
     drop_right_fork(philo);
     return (1);

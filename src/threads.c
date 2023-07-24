@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 15:43:29 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/07/20 20:37:36 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/07/22 12:17:24 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void    *routine(void *philo_ptr)
     update_last_eat(philo);
     if (philo->id % 2 == 0)
     {
-        ft_think(philo);
+        ft_think(philo, 0);
     }
     while (get_philo_state(philo) != DEAD)
     {
@@ -36,7 +36,7 @@ void    *routine(void *philo_ptr)
             break ;
         if (get_philo_state(philo) == DEAD)
             break ;
-        if (!ft_think(philo))
+        if (!ft_think(philo, 1))
             break ;
     }
     return (NULL);
@@ -53,7 +53,7 @@ void    start_threads(t_data *data)
         if (pthread_create(&data->philo_id[i], NULL, &routine, &data->philo_struct[i]))
             break; // CHANGER POUR FREE
     }
-    if  (pthread_create(&data->supervisor, NULL, &alive, data))
+    if  (pthread_create(&data->supervisor, NULL, &alive2, data))
         return ; // PEUT ETRE CHANGER
 }
 

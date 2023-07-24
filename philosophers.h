@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 12:13:36 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/07/20 19:05:59 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/07/22 12:16:48 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_philo
     pthread_mutex_t meal_time_mut;
     pthread_mutex_t state_mut;
     pthread_mutex_t sleep_eat_mut;
+    pthread_mutex_t meals_eaten_mut;
     int             id;
     int             meals_eaten;
     time_t             last_meal_time;
@@ -94,8 +95,8 @@ int take_left_fork(t_philo *philo);
 int take_right_fork(t_philo *philo);
 void drop_left_fork(t_philo *philo);
 void drop_right_fork(t_philo *philo);
-void set_philo_state(t_philo *philo, t_state state);
 void    sleep_eat_time(t_philo *philo);
+
 
 /* SLEEP */
 
@@ -104,7 +105,7 @@ int ft_usleep(time_t sleep_time, t_philo *philo);
 
 /* THINK */
 
-int ft_think(t_philo *philo);
+int ft_think(t_philo *philo, int print);
 
 /* THREADS */
 
@@ -122,23 +123,35 @@ int     ft_atoi(char *str);
 void    print_help(void);
 time_t     get_time(void);
 
-void    update_last_eat(t_philo *philo);
+
 void    print_message(t_philo *philo, char *str);
 
 /* GETTERS */
 
-t_state get_philo_state(t_philo *philo);
+t_state     get_philo_state(t_philo *philo);
+time_t      get_last_meal_time(t_philo *philo);
+time_t      get_death_timer(t_data *data);
+int         get_philo_meals(t_philo *philo);
+
+/* SETTERS */
+
+void        set_philo_state(t_philo *philo, t_state state);
+void        set_keep_checking(t_data *data, int value);
+void        update_meal_eaten(t_philo *philo);
+void        update_last_eat(t_philo *philo);
 
 /* BAZAR */
 
-time_t     get_last_meal_time(t_philo *philo);
 int     keep_checking(t_data *data);
 int     is_philo_dead(t_philo *philo);
 void    *alive(void *data_ptr);
-void    set_keep_checking(t_data *data, int value);
-void    notify_philos(t_data *data);
-time_t     get_death_timer(t_data *data);
 
+void    notify_philos(t_data *data);
 void    sim_start_delay(time_t start_time);
+
+void    *alive2(void *data_ptr);
+int all_philos_full(t_data *data);
+int end_conditions_reached(t_data *data);
+
 
 #endif
