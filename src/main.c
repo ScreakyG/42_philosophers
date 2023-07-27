@@ -6,20 +6,22 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 12:10:47 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/07/20 20:35:59 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/07/27 21:49:28 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philosophers.h"
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-    t_data  data;
-   
-    if (!check_argvs(argc, argv))
-        return (print_help(), 1);
-    if (!init(argc, argv, &data))
-        return (printf("Init error\n"), 1);
-    start_threads(&data);
-    wait_threads(&data);
+	t_data	data;
+
+	if (!check_argvs(argc, argv))
+		return (print_help(), 1);
+	if (!init(argc, argv, &data))
+		return (printf("Init error\n"), 1);
+	start_threads(&data);
+	wait_threads(&data);
+	destroy_mutex(&data); // PEUT ETRE INCLUDE DANS LE CHECK DES THREADS
+	free_exit(&data);
 }
