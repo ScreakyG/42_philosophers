@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 16:56:44 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/08/03 17:12:50 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/08/04 16:49:53 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ void	drop_left_fork(t_philo *philo)
 
 int	take_right_fork(t_philo *philo)
 {
-    // if (philo_died == 1)
-        //return (0);
 	if (get_philo_state(philo) == DEAD)
 		return (0);
 	pthread_mutex_lock(philo->right_fork);
@@ -35,8 +33,6 @@ int	take_right_fork(t_philo *philo)
 
 int	take_left_fork(t_philo *philo)
 {
-    //if (philo_died == 1)
-        //return (0);
 	if (get_philo_state(philo) == DEAD)
 		return (0);
 	pthread_mutex_lock(philo->left_fork);

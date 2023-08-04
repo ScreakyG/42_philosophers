@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 22:03:56 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/08/02 15:31:17 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/08/04 17:02:51 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	one_philo_case(t_philo *philo)
 {
 	take_left_fork(philo);
 	ft_usleep(get_death_timer(philo->data), philo);
+	drop_left_fork(philo);
 	set_philo_state(philo, DEAD);
 }
 
