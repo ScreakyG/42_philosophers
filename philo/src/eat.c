@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 16:56:44 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/08/04 16:49:53 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/08/17 16:52:33 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,26 +44,10 @@ int	take_forks(t_philo *philo)
 {
 	if (philo->data->philo_nb == 1)
 		return (one_philo_case(philo), 0);
-	if (philo->id % 2 == 0)
-	{
-		if (!take_right_fork(philo))
-			return (0);
-		if (!take_left_fork(philo))
-		{
-			drop_right_fork(philo);
-			return (0);
-		}
-	}
-	else
-	{
-		if (!take_left_fork(philo))
-			return (0);
-		if (!take_right_fork(philo))
-		{
-			drop_left_fork(philo);
-			return (0);
-		}
-	}
+	if (!take_left_fork(philo))
+		return (0);
+	if (!take_right_fork(philo))
+		return (0);
 	return (1);
 }
 

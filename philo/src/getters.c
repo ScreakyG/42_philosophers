@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 17:00:09 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/08/01 17:06:04 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/08/17 15:39:45 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 int	is_philo_dead(t_philo *philo)
 {
-	if (get_time() - get_last_meal_time(philo) >= get_death_timer(philo->data)
-		&& get_philo_state(philo) != EATING)
+	if (get_time() - get_last_meal_time(philo) >= philo->data->time_to_die)
 	{
 		set_philo_state(philo, DEAD);
 		return (1);
