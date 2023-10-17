@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 19:06:45 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/08/01 14:45:33 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/10/17 20:06:48 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 int	malloc_data(t_data *data)
 {
+	data->philo_id = NULL;
+	data->forks = NULL;
+	data->philo_struct = NULL;
 	data->philo_id = malloc(data->philo_nb * sizeof(pthread_t));
 	if (!data->philo_id)
 		return (free_exit(data), 0);

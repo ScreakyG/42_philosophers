@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 11:50:42 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/08/17 14:53:53 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/10/17 20:09:19 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_usleep(time_t sleep_time, t_philo *philo)
 	time_t	start;
 
 	start = get_time();
-	while (get_time() - start < sleep_time)
+	while (get_time() - start <= sleep_time)
 	{
 		if (get_philo_state(philo) == DEAD)
 			break ;
