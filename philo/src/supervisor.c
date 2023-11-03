@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 12:12:20 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/08/01 17:03:02 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/11/03 15:40:31 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,10 @@ void	*alive2(void *data_ptr)
 
 int	end_conditions_reached(t_data *data)
 {
-	int	i;
+	int		i;
+	bool	philo_ate_enough;
 
+	philo_ate_enough = true;
 	i = -1;
 	while (++i < data->philo_nb)
 	{
@@ -52,29 +54,20 @@ int	end_conditions_reached(t_data *data)
 			notify_philos(data);
 			return (1);
 		}
-		if (data->meal_must_eat != -1 && all_philos_full(data))
+		if (data->meal_must_eat != -1)
 		{
-			set_keep_checking(data, 0);
-			notify_philos(data);
-			return (1);
+			if (get_philo_meals(&data->philo_struct[i]) < data->meal_must_eat)
+				philo_ate_enough = false;
 		}
 	}
+	if (data->meal_must_eat != -1 && philo_ate_enough == true)
+		end_supervisor(data);
 	return (0);
 }
 
-int	all_philos_full(t_data *data)
+int	end_supervisor(t_data *data)
 {
-	int	i;
-	int	nb_philos_full;
-
-	nb_philos_full = 0;
-	i = -1;
-	while (++i < data->philo_nb)
-	{
-		if (get_philo_meals(&data->philo_struct[i]) >= data->meal_must_eat)
-			nb_philos_full++;
-	}
-	if (nb_philos_full == data->philo_nb)
-		return (1);
-	return (0);
+	set_keep_checking(data, 0);
+	notify_philos(data);
+	return (1);
 }

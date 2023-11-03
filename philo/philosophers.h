@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 12:13:36 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/08/03 13:25:59 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/11/03 15:40:47 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdio.h>
 # include <stdlib.h>
+# include <stdbool.h>
 # include <unistd.h>
 # include <pthread.h>
 # include <sys/time.h>
@@ -86,7 +87,11 @@ int			init_forks(t_data *data);
 
 /* SUPERVISOR */
 
-void		*alive(void *data_ptr);
+void		*alive2(void *data_ptr);
+int			keep_checking(t_data *data);
+int			is_philo_dead(t_philo *philo);
+int			end_conditions_reached(t_data *data);
+int			end_supervisor(t_data *data);
 
 /* EAT */
 
@@ -142,15 +147,8 @@ void		update_begin_time(t_philo *philo);
 
 /* BAZAR */
 
-int			keep_checking(t_data *data);
-int			is_philo_dead(t_philo *philo);
-
 void		notify_philos(t_data *data);
 void		sim_start_delay(time_t start_time);
-
-void		*alive2(void *data_ptr);
-int			all_philos_full(t_data *data);
-int			end_conditions_reached(t_data *data);
 void		destroy_mutex(t_data *data);
 void		one_philo_case(t_philo *philo);
 

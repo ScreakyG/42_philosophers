@@ -1,5 +1,4 @@
 NAME = philo
-CC = gcc
 CFLAGS = -Wall -Werror -Wextra -g -lpthread
 
 ### SRCS FILES ###

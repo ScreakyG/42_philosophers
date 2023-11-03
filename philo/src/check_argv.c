@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 12:23:26 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/08/03 17:09:27 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/11/03 03:32:59 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	check_argvs(int argc, char **argv)
 	}
 	if (argc == 6 && ft_atoi(argv[5]) <= 0)
 		return (WRONG_INPUT);
-	if (ft_atoi(argv[1]) < 1 || ft_atoi(argv[1]) > 200)
+	if (ft_atoi(argv[1]) < 1)
 		return (WRONG_INPUT);
 	return (1);
 }
