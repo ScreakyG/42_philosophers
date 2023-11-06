@@ -1,50 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_argv.c                                       :+:      :+:    :+:   */
+/*   init_mutex.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/27 12:23:26 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/11/06 03:36:51 by fgonzale         ###   ########.fr       */
+/*   Created: 2023/11/05 17:36:49 by fgonzale          #+#    #+#             */
+/*   Updated: 2023/11/05 21:07:58 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philosophers.h"
 
-static int	is_only_digit(char *str)
+int	init_data_mutex(t_data *data)
 {
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] >= '0' && str[i] <= '9')
-			i++;
-		else
-			return (0);
-	}
-	return (1);
-}
-
-int	check_argvs(int argc, char **argv)
-{
-	int	i;
-
-	i = 1;
-	if (argc < 5 || argc > 6)
+	if (pthread_mutex_init(&data->write, NULL) != 0)
 		return (0);
-	while (argv[i])
-	{
-		if (!is_only_digit(argv[i]))
-			return (0);
-		else if (ft_atoi(argv[i]) > INT_MAX)
-			return (0);
-		i++;
-	}
-	if (argc == 6 && ft_atoi(argv[5]) <= 0)
+	if (pthread_mutex_init(&data->keep_checking_mut, NULL) != 0)
 		return (0);
-	if (ft_atoi(argv[1]) < 1)
+	if (pthread_mutex_init(&data->death_timer_mutex, NULL) != 0)
 		return (0);
 	return (1);
 }

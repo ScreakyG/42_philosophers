@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 12:13:36 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/11/03 15:40:47 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/11/06 03:37:09 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@
 # define EAT "is eating"
 # define SLEEP "is sleeping"
 # define THINK "is thinking"
-# define WRONG_INPUT 0
 
 typedef enum e_philo_state
 {
@@ -84,6 +83,7 @@ int			init(int argc, char **argv, t_data *data);
 int			init_data(int argc, char **argv, t_data *data);
 int			init_philos(t_data *data);
 int			init_forks(t_data *data);
+int			init_data_mutex(t_data *data);
 
 /* SUPERVISOR */
 

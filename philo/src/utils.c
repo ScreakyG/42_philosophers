@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 22:03:56 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/08/04 17:02:51 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/11/05 17:28:17 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,7 @@ void	print_help(void)
 	printf("(optional argument)\n");
 	printf("Example:\n\n");
 	printf("./philo 4 800 200 200 5\n\n");
-	printf("nb_philos: 1-200\n");
-	printf("time_to_die: 60+\n");
-	printf("time_to_eat: 60+\n");
-	printf("time_to_sleep: 60+\n");
-	printf("number_of_times_each_philosopher_must_eat: ");
-	printf("0+\n");
+	printf("Use only positive integers.\n");
 }
 
 long	ft_atoi(char *str)

@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 19:06:45 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/10/17 20:06:48 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/11/05 21:09:07 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ int	malloc_data(t_data *data)
 	data->philo_struct = NULL;
 	data->philo_id = malloc(data->philo_nb * sizeof(pthread_t));
 	if (!data->philo_id)
-		return (free_exit(data), 0);
+		return (0);
 	data->forks = malloc(data->philo_nb * sizeof(pthread_mutex_t));
 	if (!data->forks)
-		return (free_exit(data), 0);
+		return (0);
 	data->philo_struct = malloc(data->philo_nb * sizeof(t_philo));
 	if (!data->philo_struct)
-		return (free_exit(data), 0);
+		return (0);
 	return (1);
 }
 
@@ -41,10 +41,15 @@ int	init_philos(t_data *data)
 		data->philo_struct[i].id = i + 1;
 		data->philo_struct[i].meals_eaten = 0;
 		data->philo_struct[i].state = IDLE;
-		pthread_mutex_init(&data->philo_struct[i].meal_time_mut, NULL);
-		pthread_mutex_init(&data->philo_struct[i].state_mut, NULL);
-		pthread_mutex_init(&data->philo_struct[i].sleep_eat_mut, NULL);
-		pthread_mutex_init(&data->philo_struct[i].meals_eaten_mut, NULL);
+		if (pthread_mutex_init(&data->philo_struct[i].meal_time_mut, NULL) != 0)
+			return (0);
+		if (pthread_mutex_init(&data->philo_struct[i].state_mut, NULL) != 0)
+			return (0);
+		if (pthread_mutex_init(&data->philo_struct[i].sleep_eat_mut, NULL) != 0)
+			return (0);
+		if (pthread_mutex_init(&data->philo_struct[i].meals_eaten_mut
+				, NULL) != 0)
+			return (0);
 		update_last_eat(&data->philo_struct[i]);
 	}
 	return (1);
@@ -62,9 +67,8 @@ int	init_data(int argc, char **argv, t_data *data)
 	if (!malloc_data(data))
 		return (0);
 	data->keep_checking = 1;
-	pthread_mutex_init(&data->write, NULL);
-	pthread_mutex_init(&data->keep_checking_mut, NULL);
-	pthread_mutex_init(&data->death_timer_mutex, NULL);
+	if (!init_data_mutex(data))
+		return (0);
 	data->supervisor = 0;
 	return (1);
 }
@@ -75,7 +79,10 @@ int	init_forks(t_data *data)
 
 	i = -1;
 	while (++i < data->philo_nb)
-		pthread_mutex_init(&data->forks[i], NULL);
+	{
+		if (pthread_mutex_init(&data->forks[i], NULL) != 0)
+			return (0);
+	}
 	i = 0;
 	data->philo_struct[0].left_fork = &data->forks[0];
 	data->philo_struct[0].right_fork = &data->forks[data->philo_nb - 1];
@@ -90,7 +97,7 @@ int	init_forks(t_data *data)
 int	init(int argc, char **argv, t_data *data)
 {
 	if (!init_data(argc, argv, data))
-		return (0);
+		return (free_exit(data), 0);
 	if (!init_philos(data))
 		return (free_exit(data), 0);
 	if (!init_forks(data))

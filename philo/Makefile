@@ -4,7 +4,7 @@ CFLAGS = -Wall -Werror -Wextra -g -lpthread
 ### SRCS FILES ###
 
 SRCS_DIR = src/
-SRCS_FILES = main.c check_argv.c utils.c init.c exit.c threads.c eat.c getters.c setters.c sleep.c think.c supervisor.c getters2.c setters2.c forks.c
+SRCS_FILES = main.c check_argv.c utils.c init.c exit.c threads.c eat.c getters.c setters.c sleep.c think.c supervisor.c getters2.c setters2.c forks.c init_mutex.c
 SRCS = $(addprefix $(SRCS_DIR), $(SRCS_FILES))
 SRCS_OBJS = $(SRCS:.c=.o)
 
