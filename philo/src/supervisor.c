@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 12:12:20 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/11/03 15:40:31 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/11/07 18:27:26 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	*alive2(void *data_ptr)
 	{
 		if (end_conditions_reached(data) == 1)
 			break ;
-		usleep(1000);
+		usleep(500);
 	}
 	return (NULL);
 }
