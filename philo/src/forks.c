@@ -6,7 +6,7 @@
 /*   By: fgonzale <fgonzale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 20:15:32 by fgonzale          #+#    #+#             */
-/*   Updated: 2023/10/22 21:57:39 by fgonzale         ###   ########.fr       */
+/*   Updated: 2023/11/08 17:26:40 by fgonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	take_forks(t_philo *philo)
 		{
 			drop_left_fork(philo);
 			return (0);
-		}		
+		}
 	}
 	return (1);
 }
